@@ -1,0 +1,53 @@
+export type Orientation = 'left' | 'right' | 'up' | 'down'
+
+export interface Ship {
+  id: number
+  orientation: Orientation
+  position: Vector2 | null
+}
+
+export type TileType =
+  | 'water'
+  | 'ship'
+  | 'shipPart'
+
+export interface Tile {
+  position: Vector2,
+  type: TileType,
+  hit: boolean,
+  ship: Ship | null,
+}
+
+export interface Guesses {
+  player1: Turns | null
+  player2: Turns | null
+}
+
+export interface Vector2 {
+  x: number
+  y: number
+}
+
+export type GameState =
+  | 'start'
+  | 'player1'
+  | 'player2'
+  | 'waitingForServer'
+  | 'player1Wins'
+  | 'player2Wins'
+
+export type ShotResult =
+  | 'hit'
+  | 'miss'
+
+export interface Turn {
+  id: string
+  player: string
+  position: Vector2
+  result: ShotResult
+  ship?: Ship
+}
+
+export interface Turns {
+  [key: string]: Turn
+}
